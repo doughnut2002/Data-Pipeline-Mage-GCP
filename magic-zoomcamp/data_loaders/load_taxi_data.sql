@@ -1,0 +1,1 @@
+select * from nyc_taxi.yellow_cab_data limit 20
