@@ -1,0 +1,96 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_loaders/api_data_load.py
+  downstream_blocks:
+  - tranform_data
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: api_data_load
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: api_data_load
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    file_source:
+      path: transformers/tranform_data.py
+  downstream_blocks:
+  - load_data_to_gcs_parquet
+  - load_data_to_gcs_partitioned_parquet
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: tranform_data
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - api_data_load
+  uuid: tranform_data
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load_data_to_gcs_parquet
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - tranform_data
+  uuid: load_data_to_gcs_parquet
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load_data_to_gcs_partitioned_parquet
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - tranform_data
+  uuid: load_data_to_gcs_partitioned_parquet
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-01-24 13:10:31.320970+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: damp glacier
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-01-24 14:17:30'
+uuid: damp_glacier
+variables_dir: /home/src/mage_data/mage-magic
+widgets: []
