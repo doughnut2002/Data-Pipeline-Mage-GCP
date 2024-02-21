@@ -118,3 +118,5 @@
     - Mage Terraform Templates
 
 12. **Study backfills and other relevant topics.**
+
+Thankyou

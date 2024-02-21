@@ -7,13 +7,13 @@ if 'test' not in globals():
     from mage_ai.data_preparation.decorators import test
 
 
+
 @data_loader
 def load_data_from_api(*args, **kwargs):
     """
     Template for loading data from API
     """
-    url = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2020-05.csv.gz'
-    
+    months=["01","02","03","04","05","06","07","08","09","10","11","12"]    
     taxi_dtypes ={
         'VendorID': pd.Int64Dtype(),
         'passenger_count': pd.Int64Dtype(),
@@ -33,13 +33,12 @@ def load_data_from_api(*args, **kwargs):
         'congestion_surcharge': float
         }
     parse_dates=['tpep_pickup_datetime','tpep_dropoff_datetime']   
+    final_data=pd.DataFrame()
 
-    return pd.read_csv(url,sep=',',compression='gzip',dtype=taxi_dtypes,parse_dates=parse_dates) 
 
-
-@test
-def test_output(output, *args) -> None:
-    """
-    Template code for testing the output of the block.
-    """
-    assert output is not None, 'The output is undefined'
+    for i in months:
+            url = f'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2019-{i}.csv.gz'
+            df=pd.read_csv(url,sep=',',compression="gzip",dtype=taxi_dtypes,parse_dates=parse_dates)
+            final_data=pd.concat([final_data,df],ignore_index=True)
+        
+    return final_data

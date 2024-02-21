@@ -19,8 +19,8 @@ def export_data_to_google_cloud_storage(df: DataFrame, **kwargs) -> None:
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = 'default'
 
-    bucket_name = 'mage-bucket-planner'
-    object_key = 'mage_taxi_data.parquet'
+    bucket_name = 'dbt-dezoomcamp'
+    object_key = 'yellow/yellow_taxi_data_2019.parquet'
 
     GoogleCloudStorage.with_config(ConfigFileLoader(config_path, config_profile)).export(
         df,

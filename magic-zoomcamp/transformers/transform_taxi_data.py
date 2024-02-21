@@ -7,6 +7,7 @@ if 'test' not in globals():
 @transformer
 def transform(data, *args, **kwargs):
     
+    data.columns=(data.columns.str.replace(' ','_').str.lower())
     print("Rows with 0 passangers: ",data['passenger_count'].isin([0]).sum())
 
     return data[data['passenger_count'] > 0]

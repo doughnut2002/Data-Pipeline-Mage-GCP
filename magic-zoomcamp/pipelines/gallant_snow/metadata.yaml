@@ -12,12 +12,12 @@ blocks:
   language: python
   name: api_data_loader
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: api_data_loader
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     file_source:
@@ -38,7 +38,7 @@ blocks:
   upstream_blocks:
   - api_data_loader
   uuid: transform_taxi_data
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     file_source:
@@ -50,13 +50,13 @@ blocks:
   language: python
   name: taxi_to_gcs_partitioned_parquet
   retry_config: null
-  status: not_executed
+  status: updated
   timeout: null
   type: data_exporter
   upstream_blocks:
   - transform_taxi_data
   uuid: taxi_to_gcs_partitioned_parquet
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks: []
@@ -66,13 +66,13 @@ blocks:
   language: python
   name: taxi_to_gcs
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_exporter
   upstream_blocks:
   - transform_taxi_data
   uuid: taxi_to_gcs
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks: []
@@ -109,7 +109,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-01-26 13:32:37'
+updated_at: '2024-02-07 08:11:22'
 uuid: gallant_snow
 variables_dir: /home/src/mage_data/magic-zoomcamp
 widgets: []
